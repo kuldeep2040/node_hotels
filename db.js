@@ -13,5 +13,5 @@ dbss.on("disconnected", () => {
   console.log("MongoDB Server is disconnected.");
 });
 
-// export default dbsss;
+// export default db;
 module.exports = dbss;
