@@ -1,6 +1,7 @@
 const express = require("express");
 const dbss = require("./db");
 const app = express();
+require('dotenv').config();
 const bodyParser = require("body-parser");
 app.use(bodyParser.json());
 
@@ -19,4 +20,5 @@ app.get("/about", (req, res) => {
   return res.send("Hello from about page" + "\tHey " + req.query.name);
 });
 
-app.listen(3000, () => console.log("Server Started"));
+const port = process.env.PORT  || 3000;
+app.listen(port, () => console.log("Server Started"));
