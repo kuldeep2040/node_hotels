@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const Person = require('../models/person');
 
-router.get("/:workType", async(req, res) => {
+router.get("/:workType", async (req, res) => {
   try {
     const workType = req.params.workType;
     if (workType == 'chef' || workType == 'owner' || workType == 'manager') {
@@ -42,16 +42,16 @@ router.get("/", async (req, res) => {
 
 });
 
-router.put("/:id", async (req, res)=>{
+router.put("/:id", async (req, res) => {
   try {
     const id = req.params.id;
     const updatedData = req.body;
-    const response = await Person.findByIdAndUpdate(id, updatedData,{
+    const response = await Person.findByIdAndUpdate(id, updatedData, {
       new: true,
       runValidators: true
     })
-    if(!response){
-      return res.status(404).json({error: "Person not found"})
+    if (!response) {
+      return res.status(404).json({ error: "Person not found" })
     }
 
     console.log("Data loaded Successfully")
@@ -61,14 +61,14 @@ router.put("/:id", async (req, res)=>{
     console.log(error);
     res.status(404).json({ error: "Internal server error" })
   }
-} )
+})
 
-router.delete("/:id", async (req, res)=>{
+router.delete("/:id", async (req, res) => {
   try {
     const id = req.params.id;
     const response = await Person.findByIdAndDelete(id)
-    if(!response){
-      return res.status(404).json({error: "Person not found"})
+    if (!response) {
+      return res.status(404).json({ error: "Person not found" })
     }
 
     console.log("Data deleted Successfully")
@@ -78,6 +78,6 @@ router.delete("/:id", async (req, res)=>{
     console.log(error);
     res.status(404).json({ error: "Internal server error" })
   }
-} )
+})
 
 module.exports = router;
